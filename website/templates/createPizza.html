@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Create Pizza{% endblock %}
+
+{% block content %}
+<div class="relative bg-yellow-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="max-w-3xl bg-white p-8 rounded-lg shadow-lg relative z-10">
+    <img src="/static/banner.png" alt="Pizza Planet Banner" class="w-full rounded-lg shadow-lg mb-6">
+    <h3 class="text-3xl font-bold text-center text-red-600 mb-6">Create a New Pizza</h3>
+    <form action="/make" method="POST">
+      <!-- Pizza Name Input -->
+      <div class="mb-4">
+        <label for="pizzaName" class="block text-lg font-medium text-gray-700 mb-2">Pizza Name</label>
+        <input type="text" name="pizzaName" id="pizzaName" placeholder="Enter pizza name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600">
+      </div>
+      <!-- Toppings Dropdown Selector -->
+      <div class="mb-6 relative">
+        <label class="block text-lg font-medium text-gray-700 mb-2">Select Toppings</label>
+        <button type="button" onclick="toggleDropdown()" class="w-full bg-blue-500 text-white px-4 py-2 rounded flex justify-between items-center focus:outline-none hover:bg-blue-600">
+          Select Toppings
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <!-- Dropdown Menu with Scroll -->
+        <div id="toppingsDropdown" class="absolute z-10 hidden w-full bg-white rounded shadow mt-2 max-h-48 overflow-y-auto">
+          <ul class="p-3 space-y-2">
+            {% for topping in toppings %}
+            <li>
+              <div class="flex items-center">
+                <input id="topping-{{ topping.id }}" type="checkbox" name="toppings" value="{{ topping.id }}" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <label for="topping-{{ topping.id }}" class="ml-2 text-gray-700">{{ topping.name }}</label>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 focus:outline-none">Create Pizza</button>
+    </form>
+    
+    <!-- Display Chef's Existing Pizzas -->
+    <div class="mt-8">
+      <h3 class="text-2xl font-bold text-center text-red-600 mb-4">Your Pizzas</h3>
+      <ul id="pizza-list" class="space-y-4">
+        {% for pizza in pizzas %}
+        <li class="p-4 bg-gray-100 rounded-lg flex justify-between items-center">
+          <div>
+            <span class="text-lg font-semibold">{{ pizza.name }}</span>
+            <button type="button" onclick="togglePizzaToppings('pizza-{{ pizza.id }}')" class="ml-4 bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600">
+              Show Toppings
+            </button>
+            <div id="pizza-{{ pizza.id }}" class="mt-2 hidden">
+              <ul class="pl-4">
+                {% for topping in pizza.toppings %}
+                <li class="text-gray-700">{{ topping.name }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="flex space-x-2">
+            <a href="/edit-pizza/{{ pizza.id }}" class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600">Edit</a>
+            <a href="/delete-pizza/{{ pizza.id }}" class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">Delete</a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById('toppingsDropdown');
+    dropdown.classList.toggle('hidden');
+  }
+  function togglePizzaToppings(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('hidden');
+  }
+</script>
+{% endblock %}

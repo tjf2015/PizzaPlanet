@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Planet - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block title %}Home{% endblock %}
+
+    {% block content %}
+        <div class="p-6 bg-yellow-100">
+            <div class="max-w-4xl mx-auto text-center">
+                <img src="/static/banner.webp" alt="Pizza Planet Banner" class="w-full rounded-lg shadow-lg">
+                <h1 class="text-4xl font-bold text-red-600 mt-6">Welcome to Pizza Planet!</h1>
+                <p class="text-lg text-gray-700 mt-4">Delicious pizzas made just for you. Choose your favorite toppings and create your masterpiece.</p>
+                
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://tse3.mm.bing.net/th?id=OIP.A_7IadfotxHc56iM-XuY5AHaJd&pid=Api" alt="Margherita Pizza" class="rounded-lg">
+                        <p class="mt-2 font-semibold">Margherita</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.HAu8l9ToJmaNvUVYqmDe2AHaE8&pid=Api" alt="Pepperoni Pizza" class="rounded-lg">
+                        <p class="mt-2 font-semibold">Pepperoni</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://tse2.mm.bing.net/th?id=OIP.Xx0j4C97GRtmrBzJHq8RFgHaLG&pid=Api" alt="Veggie Pizza" class="rounded-lg">
+                        <p class="mt-2 font-semibold">Veggie</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.Ox8Glyg3SzMCPMSGt1rFEwHaHa&pid=Api" alt="Cheese Pizza" class="rounded-lg">
+                        <p class="mt-2 font-semibold">Cheese</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                        <img src="https://tse2.mm.bing.net/th?id=OIP.6tkR-oyyhKnt6q_9rls1ewHaKX&pid=Api" alt="Assorted Toppings" class="rounded-lg">
+                        <p class="mt-2 font-semibold">Assorted Toppings</p>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <a href="/login" class="bg-red-500 text-white px-6 py-2 rounded-lg text-lg hover:bg-red-600">Login to Order</a>
+                    <a href="/signup" class="bg-red-500 text-white px-6 py-2 rounded-lg text-lg hover:bg-red-600">Sign Up</a>
+                </div>
+                
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

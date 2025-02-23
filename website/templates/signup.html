@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-yellow-100 flex justify-center items-center h-screen">
+    <div class="max-w-md bg-white p-8 rounded-lg shadow-lg w-full">
+        <img src="/static/banner.png" alt="Pizza Planet Banner" class="w-full rounded-lg shadow-lg mb-6">
+        <h3 class="text-3xl font-bold text-center text-red-600">Sign Up</h3>
+        <form method="POST" class="mt-6">
+            <div class="form-group">
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" class="mt-1 block w-full p-2 border rounded-lg">
+            </div>
+            <div class="form-group mt-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border rounded-lg">
+            </div>
+            <div class="form-group mt-4">
+                <label class="block text-sm font-medium text-gray-700">Select Role</label>
+                <div class="mt-1">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="is_owner" value="false" checked>
+                        <span class="ml-2">Chef</span>
+                    </label>
+                    <label class="inline-flex items-center ml-6">
+                        <input type="radio" class="form-radio" name="is_owner" value="true">
+                        <span class="ml-2">Owner</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group mt-4">
+                <label for="password1" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password1" name="password1" class="mt-1 block w-full p-2 border rounded-lg">
+            </div>
+            <div class="form-group mt-4">
+                <label for="password2" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input type="password" id="password2" name="password2" class="mt-1 block w-full p-2 border rounded-lg">
+            </div>
+            <button type="submit" class="mt-6 bg-red-500 text-white px-4 py-2 rounded-lg w-full hover:bg-red-600">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
